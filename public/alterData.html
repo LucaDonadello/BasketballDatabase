@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>4347 Database Project</title>
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/alterData.css" />
+</head>
+
+<body>
+    <nav>
+        <a href="./index.html">Home</a>
+        <a href="./searchData.html">Search</a>
+        <a href="./alterData.html">Alter Data</a>
+    </nav><br>
+
+    <h3>Data Alterations</h3>
+
+    <form id="alteringForm">
+        <!-- Task  Selector -->
+        <label for="taskSelector">Choose the task type you wish to conduct:</label>
+        <select name="TaskSelector" id="taskSelector" onchange="changeTable(), changeTask()">
+            <option value="default" selected disabled hidden>Choose Task</option>
+            <option value="POST">Create</option>
+            <option value="PATCH">Update</option>
+            <option value="DELETE">Delete</option>
+        </select><br>
+
+        <!-- Table  Selector -->
+        <label for="tableSelector">Choose the table you want to modify:</label>
+        <select name="TableSelector" id="tableSelector" onchange="changeTable()">
+            <option value="default" selected disabled hidden>Choose Table</option>
+            <option value="player">Player</option>
+            <option value="participatedIn">ParticipatedIn</option>
+            <option value="match_">Match</option>
+            <option value="playedIn">PlayedIn</option>
+            <option value="team">Team</option>
+            <option value="manager">Manager</option>
+        </select>
+
+        <!-- If 'Player' is selected -->
+        <div id="player">
+            <label id="PID" for="playerID">Player ID</label>
+            <input type="text" id="playerID" name="playerID" placeholder="Player ID" size="30"><br>
+            <label for="fName">First Name</label>
+            <input type="text" id="fName" name="fName" placeholder="First Name" size="30"><br>
+            <label for="lName">Last Name</label>
+            <input type="text" id="lName" name="lName" placeholder="Last Name" size="30"><br>
+            <label for="birthday">Birthday (yyyy-mm-dd)</label>
+            <input type="text" id="birthday" name="birthday" placeholder="yyyy-mm-dd" size="30"><br>
+            <label for="position">Position</label>
+            <input type="text" id="position" name="position" placeholder="Position" size="30"><br>
+            <label for="tName">Team Name</label>
+            <input type="text" id="tName" name="tName" placeholder="Team Name" size="30"><br>
+        </div>
+
+        <!-- If 'Participated In' is selected -->
+        <div id="participatedIn">
+            <label id="PIDPI" for="playerID">Player ID</label>
+            <input type="text" id="playerIDPI" name="playerID" placeholder="Player ID" size="30"><br>
+            <label for="matchNum">Match Number</label>
+            <input type="text" id="PImatchNum" name="matchNum" placeholder="Match Number" size="30"><br>
+            <label for="blocks">Blocks</label>
+            <input type="text" id="blocks" name="blocks" placeholder="Blocks" size="30"><br>
+            <label for="assits">Assists</label>
+            <input type="text" id="assists" name="assists" placeholder="Assists" size="30"><br>
+            <label for="minutesPlayed" name="minutesPlayed">Minutes Played</label>
+            <input type="text" id="minutesPlayed" name="minutesPlayed" placeholder="Minutes Played" size="30"><br>
+            <label for="pointsScored">Points Scored</label>
+            <input type="text" id="pointsScored" name="pointsScored" placeholder="Points Scored" size="30"><br>
+            <label for="passesMade">Passes Made</label>
+            <input type="text" id="passesMade" name="passesMade" placeholder="Passes Made" size="30"><br>
+        </div>
+
+        <!-- If 'Match' is selected -->
+        <div id="match_">
+            <label id="MMN" for="matchNum">Match Number</label>
+            <input type="text" id="matchNum" name="matchNum" placeholder="Match Number" size="30"><br>
+            <label for="time">Time</label>
+            <input type="text" id="time" name="time" placeholder="Time" size="30"><br>
+            <label for="homeScore">Home Score</label>
+            <input type="text" id="homeScore" name="homeScore" placeholder="Home Score" size="30"><br>
+            <label for="awayScore">Away Score</label>
+            <input type="text" id="awayScore" name="awayScore" placeholder="Away Score" size="30"><br>
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location" placeholder="Location" size="30"><br>
+        </div>
+
+        <!-- If 'Played In' is selected -->
+        <div id="playedIn">
+            <label id="PIMN" for="Mnum">Match Number</label>
+            <input type="text" id="Mnum" name="Mnum" placeholder="Match Number" size="30"><br>
+            <label for="homeTeam">Home Team</label>
+            <input type="text" id="homeTeam" name="homeTeam" placeholder="Home Team" size="30"><br>
+            <label for="awayTeam">Away Team</label>
+            <input type="text" id="awayTeam" name="awayTeam" placeholder="Away Team" size="30"><br>
+        </div>
+
+        <!-- If 'Team' is selected -->
+        <div id="team">
+            <label id="TTID" for="teamID">Team ID</label>
+            <input type="text" id="teamID" name="teamID" placeholder="Team ID" size="30"><br>
+            <label for="teamName">Team Name</label>
+            <input type="text" id="teamName" name="teamName" placeholder="Team Name" size="30"><br>
+        </div>
+
+        <!-- If 'Manager' is selected -->
+        <div id="manager">
+            <label id="MMID" for="managerID">managerID</label>
+            <input type="text" id="managerID" name="managerID" placeholder="managerID" size="30"><br>
+            <label for="tName">Team Name</label>
+            <input type="text" id="tName" name="tName" placeholder="Team Name" size="30"><br>
+            <label for="fName">First Name</label>
+            <input type="text" id="fName" name="fName" placeholder="First Name" size="30"><br>
+            <label for="lName">Last Name</label>
+            <input type="text" id="lName" name="lName" placeholder="Last Name" size="30"><br>
+            <label for="birthday">Birthday (yyyy-mm-dd)</label>
+            <input type="text" id="birthday" name="birthday" placeholder="yyyy-mm-dd" size="30"><br>
+        </div>
+    </form>
+
+    <div id="submitButtons">
+        <button onclick="getSubmission()" id="submitButton">Submit</button>
+        <button onclick="clearForm()" id="clearButton">Clear</button>
+    </div>
+
+    <h1 id="submitted">Request Successfully Submitted</h1>
+    <h1 id="invalidID">Invalid ID, Please Try Again or Try Another Field</h1>
+</body>
+
+<script type="text/javascript" src="./scripts/alterData.js"></script>
+
+</html>
